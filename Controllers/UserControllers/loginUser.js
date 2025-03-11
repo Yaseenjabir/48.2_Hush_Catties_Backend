@@ -15,14 +15,7 @@ module.exports.loginUser = async (req, res) => {
 
     const token = user.generateToken();
 
-    res.cookie("authToken", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      maxAge: 86400000,
-      sameSite: "None",
-    });
-
-    return res.status(200).send({ data: user });
+    return res.status(200).send({ token });
   } catch (error) {
     console.log(error);
     return res.status(500).send("Internal Server Error");

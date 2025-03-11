@@ -18,18 +18,11 @@ module.exports.registerUser = async function (req, res) {
 
     const user = new User({ ...req.body, password: hashedPassword });
 
-    const result = await user.save();
+    await user.save();
 
     const token = user.generateToken();
 
-    res.cookie("authToken", token, {
-      httpOnly: false,
-      secure: process.env.NODE_ENV === "production",
-      maxAge: 86400000,
-      sameSite: "None",
-    });
-
-    return res.status(201).send({ data: result });
+    return res.status(200).send({ token });
   } catch (error) {
     console.log(error);
     return res.status(500).send("Internal Server Error");
