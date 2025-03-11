@@ -15,9 +15,12 @@ connectDB();
 
 const PORT = process.env.PORT;
 app.use(cookieParser());
-app.use(cors());
-
-console.log("Hello world");
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL, // Make sure this is set correctly
+    credentials: true, // Allow cookies
+  })
+);
 
 app.use(express.json());
 app.use("/api/user", Router);
