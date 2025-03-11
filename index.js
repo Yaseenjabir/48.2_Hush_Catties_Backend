@@ -22,6 +22,8 @@ app.use(
   })
 );
 
+console.log("Hell oworld");
+
 app.use(express.json());
 app.use("/api/user", Router);
 app.use("/api/product", productRouter);
