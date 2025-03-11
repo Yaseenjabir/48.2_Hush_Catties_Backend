@@ -17,7 +17,7 @@ module.exports.loginUser = async (req, res) => {
 
     res.cookie("authToken", token, {
       httpOnly: false,
-      secure: process.env.NODE_ENV === "production",
+      secure: false,
       maxAge: 86400000,
       sameSite: "strict",
     });
