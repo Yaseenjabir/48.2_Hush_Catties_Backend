@@ -15,11 +15,7 @@ connectDB();
 
 const PORT = process.env.PORT;
 app.use(cookieParser());
-app.use(
-  cors({
-    origin: process.env.FRONTEND_URL,
-  })
-);
+app.use(cors());
 
 console.log("Hello world");
 
