@@ -19,6 +19,8 @@ app.use(
   cors({
     origin: process.env.FRONTEND_URL, // Make sure this is set correctly
     credentials: true, // Allow cookies
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    optionsSuccessStatus: 204, // Respond with 204 No Content for preflight requests
   })
 );
 
