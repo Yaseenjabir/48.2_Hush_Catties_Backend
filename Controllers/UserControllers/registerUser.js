@@ -26,7 +26,7 @@ module.exports.registerUser = async function (req, res) {
       httpOnly: false,
       secure: process.env.NODE_ENV === "production",
       maxAge: 86400000,
-      sameSite: "strict",
+      sameSite: "None",
     });
 
     return res.status(201).send({ data: result });

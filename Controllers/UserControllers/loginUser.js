@@ -19,7 +19,7 @@ module.exports.loginUser = async (req, res) => {
       httpOnly: false,
       secure: false,
       maxAge: 86400000,
-      sameSite: "strict",
+      sameSite: "None",
     });
 
     return res.status(200).send({ data: user });
