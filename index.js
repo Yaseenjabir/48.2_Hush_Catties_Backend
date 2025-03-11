@@ -24,8 +24,6 @@ app.use(
   })
 );
 
-console.log("Hello world");
-
 app.use(express.json());
 app.use("/api/user", Router);
 app.use("/api/product", productRouter);
