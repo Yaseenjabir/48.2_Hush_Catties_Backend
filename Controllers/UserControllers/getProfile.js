@@ -1,7 +1,6 @@
 const { User } = require("../../Models/User");
 const { Wishlist } = require("../../Models/Wishlist");
-const { Product } = require("../../Models/Product"); // Import the Product model
-const Order = require("../../models/Order");
+const Order = require("../../Models/Order");
 
 module.exports = async function getProfile(req, res) {
   try {
