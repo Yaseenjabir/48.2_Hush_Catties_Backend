@@ -3,11 +3,15 @@ const Router = require("./Routes/userRoute");
 const connectDB = require("./config/db");
 const cors = require("cors");
 const app = express();
+const bodyParser = require("body-parser"); // Import body-parser
 const cookieParser = require("cookie-parser");
 const productRouter = require("./Routes/productRoute");
 const ReviewRouter = require("./Routes/reviewRoute");
 const CartRouter = require("./Routes/cartRoute");
 const AddressRouter = require("./Routes/addressRoute");
+const PaymentRouter = require("./Routes/paymentRoute");
+const WishlistRouter = require("./Routes/wishlistRoute");
+const OrderRouter = require("./Routes/orderRoute");
 const errorMiddleware = require("./middleware/errorMiddleware");
 
 require("dotenv").config();
@@ -23,13 +27,18 @@ app.use(
     optionsSuccessStatus: 204, // Respond with 204 No Content for preflight requests
   })
 );
+app.use("/api/payment/webhook", bodyParser.raw({ type: "application/json" }));
 
 app.use(express.json());
+
 app.use("/api/user", Router);
 app.use("/api/product", productRouter);
 app.use("/api/review", ReviewRouter);
 app.use("/api/cart", CartRouter);
 app.use("/api/address", AddressRouter);
+app.use("/api/payment", PaymentRouter);
+app.use("/api/wishlist", WishlistRouter);
+app.use("/api/orders", OrderRouter);
 
 app.use(errorMiddleware);
 

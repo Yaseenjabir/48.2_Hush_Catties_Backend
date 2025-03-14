@@ -8,21 +8,20 @@ module.exports = async function createAddress(req, res) {
 
   try {
     const userId = req.user.userId;
-    const { addressType, street, city, state, postalCode, country } = req.body;
+    const { street, city, state, postalCode, country } = req.body;
 
-    // Find the existing address document for the user
+    // Find existing address document for the user
     let address = await Address.findOne({ user: userId });
 
     if (!address) {
-      // If no address document exists, create a new one
-      address = new Address({ user: userId });
-    }
-
-    // Update the appropriate address field based on the addressType flag
-    if (addressType === "shipping") {
+      // If no address exists, create a new one with only a shipping address
+      address = new Address({
+        user: userId,
+        shippingAddress: { street, city, state, postalCode, country },
+      });
+    } else {
+      // Update the existing shipping address
       address.shippingAddress = { street, city, state, postalCode, country };
-    } else if (addressType === "billing") {
-      address.billingAddress = { street, city, state, postalCode, country };
     }
 
     // Save the updated address document
