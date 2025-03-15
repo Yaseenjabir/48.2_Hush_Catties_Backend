@@ -24,6 +24,8 @@ const orderSchema = new mongoose.Schema({
       price: { type: Number, required: true },
       quantity: { type: Number, required: true },
       images: [{ type: String }],
+      size: { type: String, required: true },
+      color: { type: String, required: true },
     },
   ],
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "users" },

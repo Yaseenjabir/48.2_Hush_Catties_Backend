@@ -32,11 +32,17 @@ module.exports = async function handlePayment(req, res) {
       })),
       metadata: {
         products: JSON.stringify(
-          products.map((item) => ({ _id: item._id, quantity: item.quantity }))
+          products.map((item) => ({
+            _id: item._id,
+            quantity: item.quantity,
+            size: item.size,
+            color: item.color,
+          }))
         ), // Include products in metadata
         userId, // Include userId in metadata
       },
     });
+
     return res.json({ id: session.id, url: session.url });
   } catch (ex) {
     console.log(ex);

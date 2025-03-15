@@ -2,7 +2,7 @@ const { Cart } = require("../../Models/Cart");
 const { Product } = require("../../Models/Product");
 
 module.exports = async (req, res) => {
-  const { productId, quantity } = req.body;
+  const { productId, quantity, size, color } = req.body;
   const userId = req.user.userId;
 
   try {
@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
     if (existingItem) {
       existingItem.quantity += quantity;
     } else {
-      cart.items.push({ productId, quantity });
+      cart.items.push({ productId, quantity, size, color });
     }
 
     await cart.save();

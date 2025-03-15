@@ -45,6 +45,8 @@ module.exports = async function handleWebHook(req, res) {
             price: product.price,
             quantity: item.quantity,
             images: product.imageUrls,
+            color: item.color,
+            size: item.size,
           };
         })
       );

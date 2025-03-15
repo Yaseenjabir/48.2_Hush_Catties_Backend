@@ -45,6 +45,9 @@ const productSchema = new mongoose.Schema({
     type: [String],
     required: true,
   },
+  tiktokUrl: {
+    type: String,
+  },
   stock: {
     type: Boolean,
     default: true,
@@ -105,6 +108,7 @@ const validateProduct = (data) => {
       .items(Joi.string().valid("S", "M", "L", "XL", "XXL"))
       .min(1)
       .required(),
+    tiktokUrl: Joi.string(),
     color: Joi.array()
       .items(
         Joi.string().valid(

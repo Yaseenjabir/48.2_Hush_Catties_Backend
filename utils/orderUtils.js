@@ -8,9 +8,18 @@ async function createOrder(
   customerDetails,
   products,
   userId,
-  shippingAddress // Add shippingAddress parameter
+  shippingAddress
 ) {
   try {
+    // Check if an order with the same sessionId already exists
+    const existingOrder = await Order.findOne({ sessionId });
+
+    if (existingOrder) {
+      console.log("Order with the same sessionId already exists:", sessionId);
+      return existingOrder; // Return the existing order
+    }
+
+    // If no existing order, create a new one
     const order = new Order({
       sessionId,
       paymentIntent,
@@ -18,10 +27,10 @@ async function createOrder(
       customerDetails,
       products,
       userId,
-      shippingAddress, // Save the shipping address
+      shippingAddress,
     });
 
-    await order.save(); // Save the order to the database
+    await order.save(); // Save the new order to the database
     console.log("Order saved successfully");
     return order;
   } catch (err) {
