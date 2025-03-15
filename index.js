@@ -40,8 +40,6 @@ app.use("/api/payment", PaymentRouter);
 app.use("/api/wishlist", WishlistRouter);
 app.use("/api/orders", OrderRouter);
 
-console.log("Hello world");
-
 app.use(errorMiddleware);
 
 app.get("/", (req, res) => {
