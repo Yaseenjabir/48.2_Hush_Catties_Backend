@@ -35,6 +35,7 @@ module.exports = async (req, res) => {
 
     res.status(200).json({ message: "Item added to cart", cart: updatedCart });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error: "Something went wrong" });
   }
 };

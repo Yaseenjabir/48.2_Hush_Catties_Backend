@@ -2,8 +2,7 @@ const Order = require("../../Models/Order");
 
 module.exports = async function getAllOrders(req, res) {
   try {
-    const { status } = req.query;
-    const orders = await Order.find({ status });
+    const orders = await Order.find();
     return res.status(200).send(orders);
   } catch (ex) {
     console.log(ex);
