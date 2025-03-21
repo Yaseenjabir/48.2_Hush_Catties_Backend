@@ -25,14 +25,14 @@ module.exports = async function handleWebHook(req, res) {
         payment_intent: paymentIntent,
         amount_total,
         customer_details,
-        shipping_details,
         metadata,
       } = session;
 
       const productsIds = JSON.parse(metadata.products);
-      const shippingAddress = shipping_details?.address;
 
       const userId = metadata.userId;
+
+      const shippingAddress = JSON.parse(metadata.shippingAddress);
 
       // Fetch full product details from the database
       const productDetails = await Promise.all(

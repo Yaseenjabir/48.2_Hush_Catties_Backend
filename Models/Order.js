@@ -12,7 +12,6 @@ const orderSchema = new mongoose.Schema({
       line2: { type: String },
       city: { type: String },
       state: { type: String },
-      postal_code: { type: String },
       country: { type: String },
     },
   },

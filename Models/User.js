@@ -26,17 +26,13 @@ const userSchema = new mongoose.Schema({
     minLength: 6,
     maxLength: 150,
   },
+  phone: {
+    type: String,
+    required: true,
+  },
   userRole: {
     type: String,
     default: "user",
-  },
-  shippingAddress: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Address",
-  },
-  billingAddress: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Address",
   },
 });
 
@@ -58,6 +54,7 @@ function validateUser(user) {
     firstName: Joi.string().min(4).max(50).required(),
     lastName: Joi.string().min(4).max(50).required(),
     email: Joi.string().email().required(),
+    phone: Joi.string().required(),
     password: Joi.string().min(6).max(150).required(),
   });
   return schema.validate(user);
