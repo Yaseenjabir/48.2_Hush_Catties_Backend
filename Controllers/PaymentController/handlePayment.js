@@ -2,7 +2,7 @@ const Stripe = require("stripe");
 
 module.exports = async function handlePayment(req, res) {
   try {
-    const { products, deliveryCharge = 150, shippingAddress } = req.body;
+    const { products, deliveryCharge, shippingAddress } = req.body;
 
     const userId = req.user.userId;
 
