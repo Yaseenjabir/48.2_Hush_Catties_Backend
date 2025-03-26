@@ -43,7 +43,7 @@ app.use("/api/wishlist", WishlistRouter);
 app.use("/api/orders", OrderRouter);
 app.use("/api/shippo", ShippoRouter);
 
-console.log("Hello world");
+console.log("Hello from this world");
 
 app.use(errorMiddleware);
 
