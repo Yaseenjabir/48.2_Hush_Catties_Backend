@@ -4,6 +4,7 @@ const handleWebHook = require("../Controllers/PaymentController/webhook");
 const { asyncMiddleware } = require("../middleware/asyncMiddleware");
 const bodyParser = require("body-parser");
 const { verifyJwtToken } = require("../middleware/verifyToken");
+const verifySession = require("../Controllers/PaymentController/verifySession");
 
 Router.post(
   "/create-payment-intent",
@@ -15,5 +16,7 @@ Router.post(
   bodyParser.raw({ type: "application/json" }),
   asyncMiddleware(handleWebHook)
 );
+
+Router.get("/verifySession", asyncMiddleware(verifySession));
 
 module.exports = Router;

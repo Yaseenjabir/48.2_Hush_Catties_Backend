@@ -1,5 +1,3 @@
-// asyncMiddleware.js
-
 function asyncMiddleware(fn) {
   return function (req, res, next) {
     // Catch any errors from async API handler

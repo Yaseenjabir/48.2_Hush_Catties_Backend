@@ -1,6 +1,8 @@
 const { validateProduct, Product } = require("../../Models/Product");
 
 module.exports.addProduct = async function name(req, res) {
+  console.log(req.body);
+
   const { error } = validateProduct(req.body);
 
   let imageUrls = req.files.map((item) => {

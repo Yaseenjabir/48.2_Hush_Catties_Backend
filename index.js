@@ -12,6 +12,8 @@ const AddressRouter = require("./Routes/addressRoute");
 const PaymentRouter = require("./Routes/paymentRoute");
 const WishlistRouter = require("./Routes/wishlistRoute");
 const OrderRouter = require("./Routes/orderRoute");
+const ShippoRouter = require("./Routes/shippoRoute");
+
 const errorMiddleware = require("./middleware/errorMiddleware");
 
 require("dotenv").config();
@@ -39,6 +41,7 @@ app.use("/api/address", AddressRouter);
 app.use("/api/payment", PaymentRouter);
 app.use("/api/wishlist", WishlistRouter);
 app.use("/api/orders", OrderRouter);
+app.use("/api/shippo", ShippoRouter);
 
 console.log("Hello world");
 

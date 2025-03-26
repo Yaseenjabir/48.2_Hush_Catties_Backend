@@ -2,7 +2,7 @@ const Stripe = require("stripe");
 
 module.exports = async function handlePayment(req, res) {
   try {
-    const { products, deliveryCharge, shippingAddress } = req.body;
+    const { products, deliveryCharges, shippingAddress } = req.body;
 
     const userId = req.user.userId;
 
@@ -30,7 +30,7 @@ module.exports = async function handlePayment(req, res) {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       mode: "payment",
-      success_url: `${process.env.FRONTEND_URL}/success`,
+      success_url: `${process.env.FRONTEND_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.FRONTEND_URL}/cancel`,
 
       line_items: lineItems,
@@ -40,7 +40,7 @@ module.exports = async function handlePayment(req, res) {
             display_name: "Standard Shipping (Based on your location)",
             type: "fixed_amount",
             fixed_amount: {
-              amount: deliveryCharge * 100, // Convert to cents
+              amount: deliveryCharges * 100, // Convert to cents
               currency: "eur",
             },
             delivery_estimate: {
@@ -63,6 +63,8 @@ module.exports = async function handlePayment(req, res) {
         shippingAddress: JSON.stringify(shippingAddress),
       },
     });
+
+    // session.success_url = `${process.env.FRONTEND_URL}/success?id=${session.id}`;
 
     return res.json({ id: session.id, url: session.url });
   } catch (ex) {
